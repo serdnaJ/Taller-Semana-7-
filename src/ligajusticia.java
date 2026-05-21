@@ -16,6 +16,12 @@ public class ligajusticia {
     private JTextField txtid2;
     private JButton btnbus;
     private JTextArea txtlis;
+    private JTextField txtnombre2;
+    private JTextField txtsup2;
+    private JTextField txtmision2;
+    private JComboBox cbd2;
+    private JTextField txtpago2;
+    private JButton btnmodificar;
     GestorMisiones listaheroes=new GestorMisiones();
 
     public ligajusticia() {
@@ -43,6 +49,42 @@ public class ligajusticia {
             @Override
             public void actionPerformed(ActionEvent e) {
                txtlis.setText(listaheroes.toString());
+            }
+        });
+        btnbus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               try {
+                      int  id=Integer.parseInt(txtid2.getText());
+                      Heroe indice=listaheroes.buscarPorId(id);
+                      if (indice!=null){
+                          txtnombre2.setText(indice.getNombre());
+                          txtsup2.setText(indice.getSuperpoder());
+                          txtmision2.setText(indice.getMision());
+                          cbd2.setSelectedItem(indice.getDificultad());
+                          txtpago2.setText(String.valueOf(indice.getPagoMensual()));
+                      }
+
+
+               } catch (Exception ex){
+                   JOptionPane.showMessageDialog(null,
+                           ex.getMessage());
+               }
+
+            }
+        });
+        btnmodificar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int id=Integer.parseInt(txtid2.getText());
+                String nombre=txtnombre2.getText();
+                String superpoder=txtsup2.getText();
+                String mision=txtmision2.getText();
+                int prioridad=Integer.parseInt(cbd2.getSelectedItem().toString());
+                float pago=Float.parseFloat(txtpago2.getText());
+                Heroe heroe1=new Heroe( id,nombre,superpoder,mision,prioridad,pago);
+                listaheroes.modificarHeroe(id,heroe1);
+                JOptionPane.showMessageDialog(null,"Heroe actualizado");
             }
         });
     }
