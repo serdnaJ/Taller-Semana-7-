@@ -15,6 +15,7 @@ public class ligajusticia {
     private JButton btnlistar;
     private JTextField txtid2;
     private JButton btnbus;
+    private JTextArea txtlis;
     GestorMisiones listaheroes=new GestorMisiones();
 
     public ligajusticia() {
@@ -36,6 +37,12 @@ public class ligajusticia {
                             "Revise el id del heroe");
                 }
 
+            }
+        });
+        btnlistar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               txtlis.setText(listaheroes.toString());
             }
         });
     }

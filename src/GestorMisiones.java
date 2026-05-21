@@ -77,4 +77,12 @@ public class GestorMisiones {
                 "Impuesto del gobierno: $" + String.format("%.2f", calculadora.calcularImpuestoMensual(h)) + "\n" +
                 "Pago neto a recibir: $" + String.format("%.2f", calculadora.calcularPagoNetoMensual(h));
     }
+
+    public String toString() {
+        StringBuilder sb=new StringBuilder();
+        for(Heroe heroe:listaHeroes){
+            sb.append(heroe.toString()).append("\n");
+        }
+        return sb.toString().length()!=0?sb.toString():"No hay elementos";
+    }
 }
