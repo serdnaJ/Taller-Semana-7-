@@ -22,6 +22,9 @@ public class ligajusticia {
     private JComboBox cbd2;
     private JTextField txtpago2;
     private JButton btnmodificar;
+    private JTextField txtid3;
+    private JTextArea txtaporte;
+    private JButton btnbuscar2;
     GestorMisiones listaheroes=new GestorMisiones();
 
     public ligajusticia() {
@@ -85,6 +88,25 @@ public class ligajusticia {
                 Heroe heroe1=new Heroe( id,nombre,superpoder,mision,prioridad,pago);
                 listaheroes.modificarHeroe(id,heroe1);
                 JOptionPane.showMessageDialog(null,"Heroe actualizado");
+            }
+        });
+        btnbuscar2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int  id=Integer.parseInt(txtid3.getText());
+                    Heroe indice=listaheroes.buscarPorId(id);
+                    if (indice!=null){
+                        txtaporte.setText(listaheroes.generarInforme(id));
+                    }
+
+
+                } catch (Exception ex){
+                    JOptionPane.showMessageDialog(null,
+                            ex.getMessage());
+                }
+
+
             }
         });
     }
